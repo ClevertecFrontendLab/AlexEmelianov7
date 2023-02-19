@@ -20,6 +20,7 @@ export interface IRoute extends RouteObject{
 
 export enum Routes {
     main = '/books/:category',
+    bookAll = '/books/all',
     book = '/books/:category/:id',
     contract = '/contract',
     terms = '/terms',

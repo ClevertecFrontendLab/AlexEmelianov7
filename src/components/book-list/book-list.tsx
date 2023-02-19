@@ -1,22 +1,23 @@
 import React, {FC} from 'react';
 
 import {DisplayVariant, useDisplay} from '../../context/display-context';
+import {IBook} from '../../types/books';
 
-import {BookItem, IBook} from './book-item/book-item';
+import {BookItem} from './book-item/book-item';
 import {BookItemList} from './book-item-list/book-item-list';
 
 import styles from './book-list.module.css';
 
 interface BookListProps {
-    books: IBook[]
+    books: IBook[] | null
 }
-export const BookList: FC<BookListProps> = ({books}) => {
+export const BookList = ({ books }: BookListProps) => {
     const { display } = useDisplay();
     const displayVariant = display === DisplayVariant.tile ? styles.bookListTile : styles.bookList;
 
     return(
         <div className={displayVariant}>
-            {books.map(( book ) => {
+            {books?.map(( book ) => {
                 if (display === DisplayVariant.tile) {
                     return (
                         <BookItem

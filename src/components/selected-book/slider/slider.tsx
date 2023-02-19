@@ -1,11 +1,12 @@
-import React, {FC, useState} from 'react';
+import React, {useState} from 'react';
 import {FreeMode,Pagination,Scrollbar,Thumbs} from 'swiper';
 import {Swiper as SwiperComp,SwiperSlide} from 'swiper/react';
 import SwiperClass from 'swiper/types/swiper-class';
 
 import bookNoPoster from '../../../assets/img/book-no-poster.jpg';
+import {API_URL} from '../../../books_api/books-api';
 import {useScreenWidth} from '../../../context/screen-width-context';
-import {IBook} from '../../book-list/book-item/book-item';
+import {IBookImage} from '../../../types/books';
 
 import styles from './slider.module.css';
 
@@ -16,10 +17,10 @@ import 'swiper/css/scrollbar';
 import 'swiper/css/pagination';
 
 interface SliderProps {
-    book: IBook
+    images: IBookImage[]
 }
 
-export const Slider:FC<SliderProps> = ({book}) => {
+export const Slider = ({ images }: SliderProps) => {
     const { screenWidth } = useScreenWidth();
 
     const [swiperActiveIndex, setSwiperActiveIndex] = useState<number>(0);
@@ -38,12 +39,11 @@ export const Slider:FC<SliderProps> = ({book}) => {
         setSwiperActiveIndex(index);
     };
 
-    const posters = book.posters?.length ? book.posters.length : 0;
-
     return (
         <div className={styles.slider}>
-            {posters > 0
-                ? (
+            {images?.length === 1 && <img className={styles.onePoster} src={`${API_URL}${images[0].url}`} alt="poster"/>}
+            {images?.length > 1
+                && (
                 <SwiperComp
                     data-test-id='slide-big'
                     pagination={{
@@ -67,16 +67,15 @@ export const Slider:FC<SliderProps> = ({book}) => {
                     }
                     }}
                 >
-                {book.posters?.map((elem) => (
-                    <SwiperSlide key={elem.id}>
-                        <img src={elem.image} alt='poster'/>
+                {images.map((elem) => (
+                    <SwiperSlide key={elem.url}>
+                        <img src={`${API_URL}${elem.url}`} alt='poster'/>
                     </SwiperSlide>
                 ))}
                 </SwiperComp>
-                ) : (
-                <img className={styles.bookNoPoster} src={bookNoPoster} alt='book' />
                 )}
-            {screenWidth > 870 && posters > 1
+            {!images?.length && <img className={styles.bookNoPoster} src={bookNoPoster} alt='book' />}
+            {screenWidth > 870 && images?.length > 1
                 &&
                 <SwiperComp
                     scrollbar={{
@@ -91,9 +90,9 @@ export const Slider:FC<SliderProps> = ({book}) => {
                     watchSlidesProgress={true}
                     className="swiperBottom"
                 >
-                    {book.posters?.map((elem, index) => (
-                        <SwiperSlide onClick={() => handleSlideTo(index)} key={elem.id} data-test-id='slide-mini'>
-                            <img className={index === swiperActiveIndex ? styles.active : ''} src={elem.image} alt='poster'/>
+                    {images.map((elem, index) => (
+                        <SwiperSlide onClick={() => handleSlideTo(index)} key={elem.url} data-test-id='slide-mini'>
+                            <img className={index === swiperActiveIndex ? styles.active : ''} src={`${API_URL}${elem.url}`} alt='poster'/>
                         </SwiperSlide>
                     ))}
                 </SwiperComp>

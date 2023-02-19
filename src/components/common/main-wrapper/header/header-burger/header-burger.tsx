@@ -1,10 +1,10 @@
 import React, {MouseEventHandler, useEffect, useState} from 'react';
 
+import {useScreenWidth} from '../../../../../context/screen-width-context';
 import {AsideNav} from '../../../../aside-nav/aside-nav';
 import {NavTab} from '../../../../aside-nav/nav-tab/nav-tab';
 
 import styles from './header-burger.module.css';
-import {useScreenWidth} from "../../../../../context/screen-width-context";
 
 export const HeaderBurger = () => {
     const { screenWidth } = useScreenWidth();
@@ -46,12 +46,12 @@ export const HeaderBurger = () => {
             >
                 <div className={open ? styles.burgerMenuActive : styles.burgerMenuClosed}>
                     <div className={styles.burgerMenuTop}>
-                        <AsideNav
+                         <AsideNav
                             showcase='burger-showcase'
                             terms='burger-terms'
                             contract='burger-contract'
-                            books='burger-books'
-                        />
+                            navBooks='burger-books'
+                         />
                     </div>
                     <div className={styles.burgerMenuBottom}>
                         <div className={styles.bottomTabs}>

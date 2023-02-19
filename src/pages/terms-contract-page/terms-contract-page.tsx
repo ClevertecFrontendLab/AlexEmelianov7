@@ -15,7 +15,7 @@ export const TermsContractPage: FC = () => {
                 showcase='navigation-showcase'
                 terms='navigation-terms'
                 contract='navigation-contract'
-                books='navigation-books'
+                navBooks='navigation-books'
             />
             <div className={styles.pageContent}>
                 {isTermsPage

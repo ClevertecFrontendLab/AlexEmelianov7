@@ -3,7 +3,6 @@ import {Link, PathMatch} from 'react-router-dom';
 
 import styles from './nav-tab.module.css';
 import {WithChildren} from "../../../types/with-children";
-import {DataTestIdProps} from "../aside-nav";
 
 interface NavTabProps {
     name: string

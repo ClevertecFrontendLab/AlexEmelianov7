@@ -1,25 +1,20 @@
 import React, {FC} from 'react';
 import {NavLink} from 'react-router-dom';
 
+import {IBookCategoryWithCount} from '../../../../types/book-categories';
+
 import styles from './book-genre.module.css';
 
-export interface IBookGenre {
-    id: number
-    name: string
-    count: string
-    category?: string
-    dataTestId?: string
-}
-
 interface BookGenreProps {
-    genre: IBookGenre
     dataTestId?: string
     // onClick?: MouseEventHandler<HTMLLIElement>
 }
 
-export const BookGenre: FC<BookGenreProps> = (
+export const BookGenre: FC<BookGenreProps & IBookCategoryWithCount> = (
     {
-        genre,
+        path,
+        name,
+        count,
         dataTestId
     }) => (
         <li
@@ -27,11 +22,11 @@ export const BookGenre: FC<BookGenreProps> = (
             className={`${styles.genre}`}
         >
             <NavLink
-                to={`/books/${genre.category}`}
+                to={`/books/${path}`}
                 className={({isActive}) =>`${isActive ? styles.active : ''}`}
             >
-                {genre.name}
+                {name}
             </NavLink>
-            <span className={`${styles.count}`}>{genre.count}</span>
+            <span className={`${styles.count}`}>{count}</span>
         </li>
     );

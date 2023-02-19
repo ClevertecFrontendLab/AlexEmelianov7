@@ -12,6 +12,16 @@
   align-items:flex-start;
   cursor:pointer;
 }
+.poster {
+  width:174px;
+  height:242px;
+  border:1px solid #A7A7A7;
+  border-radius:10px;
+  overflow:hidden;
+}
+.poster img {
+  height:100%;
+}
 .rating {
   font-family:'Montserrat', sans-serif;
   font-style:normal;
@@ -22,12 +32,16 @@
   color:#A7A7A7;
 }
 .title {
+  display:-webkit-box;
+  -webkit-line-clamp:3;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  height:54px;
   font-family:'Montserrat', sans-serif;
   font-style:normal;
   font-weight:600;
   font-size:14px;
   line-height:18px;
-  display:flex;
   align-items:center;
   letter-spacing:0.1px;
   color:#363636;
@@ -42,6 +56,9 @@
   align-items:center;
   letter-spacing:0.1px;
   color:#727272;
+}
+.button {
+  width:100%;
 }
 @media (max-width:830px) {
   .title {

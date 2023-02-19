@@ -3,6 +3,7 @@ import React, {FC, MouseEventHandler} from 'react';
 import {WithChildren} from '../../../types/with-children';
 
 import styles from './button.module.css';
+import {WithClassname} from "../../../types/with-classname";
 
 export enum ButtonVariant {
     primary = 'primary',
@@ -10,21 +11,21 @@ export enum ButtonVariant {
 }
 
 export interface ButtonProps {
+    name: string
     variant?: ButtonVariant
-    reserved?: boolean
+    disabled?: boolean
     onClick?: MouseEventHandler<HTMLButtonElement>
-    className?: string
 }
-export const Button: FC<ButtonProps & WithChildren> = (
+export const Button: FC<ButtonProps & WithClassname> = (
     {
+        name= '',
         variant = ButtonVariant.primary,
-        children,
         onClick,
         className= '',
-        reserved= false
+        disabled= false
     }) => (
         <button
-            disabled={reserved}
+            disabled={disabled}
             onClick={onClick}
             className={`
                 ${className}
@@ -33,7 +34,6 @@ export const Button: FC<ButtonProps & WithChildren> = (
             `}
             type='button'
         >
-            {!reserved ? 'Забронировать' : 'Забронирована'}
-            {children}
+            {name}
         </button>
     );

@@ -1,34 +1,40 @@
-import {FC, useEffect, useState} from 'react';
+import React, {FC, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 
-import {IBook} from '../../components/book-list/book-item/book-item';
+import {Error} from '../../components/common/error/error';
+import {Loader} from '../../components/common/loader/loader';
 import {SelectedBook} from '../../components/selected-book/selected-book';
-import {mockedBooksData} from '../../mocks/mocked-books-data/mocked-books-data';
+import {useAppDispatch, useAppSelector} from '../../hooks/use-redux';
+import {bookDetailedFetching} from '../../store/book-detailed/book-detailed-slice';
+import {booksFetchingError} from '../../store/books/books-slice';
 
 import styles from './book-page.module.css';
 
 export const BookPage: FC = () => {
-    const [book, setBook] = useState<IBook | null>(null);
     const { id } = useParams();
+
+    const { book, isLoading, error } = useAppSelector(state => state.bookDetailed);
+    const dispatch = useAppDispatch();
+
 
 
     useEffect(() => {
         if (id) {
-            const selectedBook = mockedBooksData.find(book => book.id === +id);
-
-            setBook(selectedBook ? selectedBook : null);
+            dispatch(bookDetailedFetching(id))
         }
-    }, [book, id])
+    }, [dispatch, id])
 
-    if (book)
     return (
         <section className={styles.bookPage}>
-            <SelectedBook book={book}/>
+            {book &&
+                <SelectedBook book={book}/>
+            }
+            {error &&
+                <Error message={error} onClose={() => dispatch(booksFetchingError(null))}/>
+            }
+            {isLoading &&
+                <Loader />
+            }
         </section>
     )
-
-        return (
-            <div>:( Book not found</div>
-        )
-
 };

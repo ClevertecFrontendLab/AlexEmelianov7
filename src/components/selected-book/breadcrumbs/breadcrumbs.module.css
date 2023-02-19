@@ -23,6 +23,9 @@
   letter-spacing:0.1px;
   color:#A7A7A7;
 }
+.crumb:last-child{
+  cursor:default;
+}
 @media (max-width:830px) {
   .wrapper {
     max-width:768px;

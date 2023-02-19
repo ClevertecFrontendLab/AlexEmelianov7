@@ -1,11 +1,10 @@
-import React, {FC, useState} from 'react';
+import React, {FC, Fragment, useState} from 'react';
 
 import chevron from '../../assets/icons/chevron.svg';
-import bookNoRating from '../../assets/icons/no-rating.svg';
-import bookRating from '../../assets/icons/stars.svg';
-import bookNoPoster from '../../assets/img/book-no-poster.jpg';
-import {IBook} from '../book-list/book-item/book-item';
+import {IBookDetailed} from '../../types/books';
+import {getBookingMessage} from '../../utils/get-booking-message';
 import {Button} from '../common/button/button';
+import {Rating} from '../common/rating/rating';
 
 import {Breadcrumbs} from './breadcrumbs/breadcrumbs';
 import {DetailedInfo} from './detailed-info/detailed-info';
@@ -16,7 +15,7 @@ import {Slider} from './slider/slider';
 import styles from './selected-book.module.css';
 
 interface SelectedBookProps {
-    book: IBook
+    book: IBookDetailed
 }
 
 export const SelectedBook: FC<SelectedBookProps> = ({book}) => {
@@ -25,36 +24,34 @@ export const SelectedBook: FC<SelectedBookProps> = ({book}) => {
 
     return (
         <React.Fragment>
-            <Breadcrumbs book={book}/>
+            <Breadcrumbs />
             <div className={styles.selectedBook}>
                 <div className={styles.topSide}>
-                    <Slider book={book}/>
+                    <Slider images={book.images}/>
                     <div className={styles.summary}>
                         <p className={styles.title}>{book.title}</p>
-                        <p className={styles.info}>{`${book.author}, ${book.year}`}</p>
-                        <Button reserved={book.reserved} className={styles.selectedBookBtn}/>
+                        <p className={styles.info}>
+                            {book.authors && book.authors.map(author => <Fragment key={author}>{author}, </Fragment>)}
+                            {book.issueYear}
+                        </p>
+                        <Button
+                            className={styles.selectedBookBtn}
+                            name={getBookingMessage(book.booking)}
+                            disabled={!!book.booking}
+                        />
                     </div>
                     <div className={styles.infoBlockAbout}>
                         <p className={styles.infoTitle}>О книге</p>
                         <p className={styles.description}>{book.description}</p>
-                        <p className={styles.description}>{book.secondDescription}</p>
                     </div>
                 </div>
                 <div className={styles.bottomSide}>
                     <div className={styles.infoBlockRating}>
                         <p className={styles.infoTitle}>Рейтинг</p>
-                        {book.rating
-                            ?
-                            <div className={styles.rating}>
-                                <img src={bookRating} alt="rating"/>
-                                {book.rating}
-                            </div>
-                            :
-                            <div className={styles.noRating}>
-                                <img src={bookNoRating} alt="rating"/>
-                                ещё нет оценок
-                            </div>
-                        }
+                        <div className={styles.rating}>
+                            <Rating roundedValue={book.rating ? Math.round(book.rating) : 0} />
+                            {book.rating ? <span>{book.rating}</span> : <span className={styles.noRating}>еще нет оценок</span>}
+                        </div>
                     </div>
                     <div className={styles.infoBlockDetailed}>
                         <p className={styles.infoTitle}>Подробная информация</p>
@@ -63,8 +60,8 @@ export const SelectedBook: FC<SelectedBookProps> = ({book}) => {
                     <div className={styles.infoBlockReviews}>
                         <div className={styles.infoTitle}>
                             Отзывы
-                            <span className={styles.reviewsNum}>{book.reviews?.length}</span>
-                            {!!book.reviews?.length &&
+                            <span className={styles.reviewsNum}>{book.comments?.length}</span>
+                            {!!book.comments?.length &&
                                 <button
                                     data-test-id='button-hide-reviews'
                                     onClick={handleOpenReviews}
@@ -75,7 +72,7 @@ export const SelectedBook: FC<SelectedBookProps> = ({book}) => {
                                 </button>
                             }
                         </div>
-                        {!!book.reviews?.length && <Reviews className={!open ? styles.reviewsClosed : ''} book={book}/>}
+                        {!!book.comments?.length && <Reviews className={!open ? styles.reviewsClosed : ''} reviews={book.comments}/>}
                         <RateBookButton className={styles.rateBookButton}/>
                     </div>
                 </div>

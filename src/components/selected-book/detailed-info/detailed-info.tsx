@@ -1,23 +1,23 @@
 import React, {FC} from 'react';
 
-import {IBook} from '../../book-list/book-item/book-item';
+import {IBookDetailed} from '../../../types/books';
 
 import styles from './detailed-info.module.css';
 
 interface DetailedInfoProps {
-    book: IBook
+    book: IBookDetailed
 }
 export const DetailedInfo: FC<DetailedInfoProps> = ({book}) => {
     const configInfo = [
         {
             title: 'Издательство',
-            value: book.publisher,
-            condition: book.publisher,
+            value: book.publish,
+            condition: book.publish,
         },
         {
             title: 'Год издания',
-            value: book.year,
-            condition: book.year,
+            value: book.issueYear,
+            condition: book.issueYear,
         },
         {
             title: 'Страниц',
@@ -26,8 +26,8 @@ export const DetailedInfo: FC<DetailedInfoProps> = ({book}) => {
         },
         {
             title: 'Переплёт',
-            value: book.binding,
-            condition: book.binding,
+            value: book.cover,
+            condition: book.cover,
         },
         {
             title: 'Формат',
@@ -39,8 +39,8 @@ export const DetailedInfo: FC<DetailedInfoProps> = ({book}) => {
     const configInfoSecond = [
         {
             title: 'Жанр',
-            value: book.genre,
-            condition: book.genre
+            value: book.categories,
+            condition: book.categories
         },
         {
             title: 'Вес',
@@ -49,13 +49,13 @@ export const DetailedInfo: FC<DetailedInfoProps> = ({book}) => {
         },
         {
             title: 'ISBN',
-            value: book.isbn,
-            condition: book.isbn
+            value: book.ISBN,
+            condition: book.ISBN
         },
         {
             title: 'Изготовитель',
-            value: book.manufacturer,
-            condition: book.manufacturer,
+            value: book.producer,
+            condition: book.producer,
         }
     ]
 
