@@ -11,12 +11,12 @@ import styles from './main-wrapper.module.css';
 
 export const MainWrapper: FC<WithChildren> = ({children}) => {
     const isBookPage = useMatch(Routes.book)
-    const main = isBookPage ? '' : styles.main
+    const main = isBookPage ? styles.bookMain : styles.main
 
     return (
         <div className={styles.wrapper}>
             <Header/>
-            <main className={main}>{children}</main>
+            <main className={`${main}`}>{children}</main>
             <Footer/>
         </div>
 

@@ -15,7 +15,6 @@ interface SearchInputProps {
     formClass: string
     searchBtnClass: string
     searchInputClass: string
-    // onSubmit: FormEventHandler<HTMLFormElement>
 }
 
 export const SearchInput: FC<SearchInputProps & WithChildren> = (

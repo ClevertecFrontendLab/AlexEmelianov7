@@ -7,7 +7,6 @@ import styles from './book-genre.module.css';
 
 interface BookGenreProps {
     dataTestId?: string
-    // onClick?: MouseEventHandler<HTMLLIElement>
 }
 
 export const BookGenre: FC<BookGenreProps & IBookCategoryWithCount> = (

@@ -6,7 +6,6 @@ import {getBookingMessage} from '../../utils/get-booking-message';
 import {Button} from '../common/button/button';
 import {Rating} from '../common/rating/rating';
 
-import {Breadcrumbs} from './breadcrumbs/breadcrumbs';
 import {DetailedInfo} from './detailed-info/detailed-info';
 import {RateBookButton} from './rate-book-button/rate-book-button';
 import {Reviews} from './reviews/reviews';
@@ -23,9 +22,7 @@ export const SelectedBook: FC<SelectedBookProps> = ({book}) => {
     const handleOpenReviews = () => setOpen(prevState => !prevState);
 
     return (
-        <React.Fragment>
-            <Breadcrumbs />
-            <div className={styles.selectedBook}>
+        <div className={styles.selectedBook}>
                 <div className={styles.topSide}>
                     <Slider images={book.images}/>
                     <div className={styles.summary}>
@@ -77,6 +74,5 @@ export const SelectedBook: FC<SelectedBookProps> = ({book}) => {
                     </div>
                 </div>
             </div>
-        </React.Fragment>
     )
 }

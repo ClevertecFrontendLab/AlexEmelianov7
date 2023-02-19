@@ -9,6 +9,7 @@ import {bookDetailedFetching} from '../../store/book-detailed/book-detailed-slic
 import {booksFetchingError} from '../../store/books/books-slice';
 
 import styles from './book-page.module.css';
+import {Breadcrumbs} from "../../components/selected-book/breadcrumbs/breadcrumbs";
 
 export const BookPage: FC = () => {
     const { id } = useParams();
@@ -26,6 +27,7 @@ export const BookPage: FC = () => {
 
     return (
         <section className={styles.bookPage}>
+            <Breadcrumbs />
             {book &&
                 <SelectedBook book={book}/>
             }
