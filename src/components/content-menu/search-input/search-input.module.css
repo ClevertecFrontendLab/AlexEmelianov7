@@ -12,7 +12,7 @@
   width:100%;
   border:none;
   outline:none;
-  caret-color:#F83600;
+  caret-color:rgb(248,54,0);
 }
 .searchInput::placeholder {
   font-family:'Montserrat', sans-serif;
@@ -27,7 +27,12 @@
   display:flex;
   border:none;
   background:none;
+}
+.cancelButton {
   cursor:pointer;
+}
+.activeSearchIcon path {
+  fill:#FF740F;
 }
 @media (max-width:830px) {
   .searchInputWrapper {

@@ -1,37 +1,51 @@
-import React, {ChangeEvent, FC, useState} from 'react';
+import React, {ChangeEvent, ChangeEventHandler, FC, useState} from 'react';
 
 import {useScreenWidth} from '../../context/screen-width-context';
 
 import {DisplaySwitchers} from './display-switchers/display-switchers';
-import {FilterButton} from './filter-button/filter-button';
 import {SearchInput} from './search-input/search-input';
+import {SortButton} from './sort-button/sort-button';
 
 import styles from './content-menu.module.css';
 
-export const ContentMenu: FC = () => {
+interface ContentMenuProps {
+    searchQuery: string
+    searchQueryChange: (value: string) => void
+    descendingSort: boolean
+    onSort: () => void
+}
+
+export const ContentMenu: FC<ContentMenuProps> = (
+    {
+        searchQuery= '',
+        searchQueryChange,
+        descendingSort,
+        onSort
+    }) => {
+
     const { screenWidth } = useScreenWidth();
 
     const [openSearch, setOpenSearch] = useState<boolean>(false);
 
-    const [searchQuery, setSearchQuery] = useState('');
+    // const [searchQuery, setSearchQuery] = useState('');
 
     const handleSearchOpen = () => setOpenSearch(true);
 
     const handleSearchClose = () => setOpenSearch(false);
 
-    const handleSetSearchQuery = (event: ChangeEvent<HTMLInputElement>) => setSearchQuery(event.target.value);
+    // const handleSetSearchQuery = (event: ChangeEvent<HTMLInputElement>) => setSearchQuery(event.target.value);
 
-    const searchOpenMobile = screenWidth < 670 ? handleSearchOpen : () => {};
+    const searchOpenMobile = screenWidth <= 670 ? handleSearchOpen : () => {};
 
-    const handleClearSearchQuery = () => setSearchQuery('');
+    // const handleClearSearchQuery = () => setSearchQuery('');
 
     const searchCloseMobile = () => {
-        if (screenWidth < 670) {
-            handleClearSearchQuery()
+        if (screenWidth <= 670) {
             handleSearchClose()
-        } else {
-            handleClearSearchQuery()
         }
+        // else {
+        //     handleClearSearchQuery()
+        // }
     }
 
     return (
@@ -40,12 +54,13 @@ export const ContentMenu: FC = () => {
                 <SearchInput
                     query={searchQuery}
                     onClick={searchOpenMobile}
-                    onChange={handleSetSearchQuery}
+                    queryChange={searchQueryChange}
                     formClass={openSearch ? styles.searchInputWrapperMobile : ''}
                     searchBtnClass={openSearch ? styles.hide : ''}
                     searchInputClass={openSearch ? styles.searchInputMobile : ''}
+                    autofocus={true}
                 >
-                    {(searchQuery || screenWidth < 670)
+                    {(searchQuery || screenWidth <= 670)
                         &&
                         <button
                             data-test-id='button-search-close'
@@ -70,7 +85,7 @@ export const ContentMenu: FC = () => {
                         </button>
                     }
                 </SearchInput>
-                <FilterButton className={openSearch ? styles.hide : ''}/>
+                <SortButton className={openSearch ? styles.hide : ''} descendingSort={descendingSort} onSort={onSort}/>
             </div>
             <DisplaySwitchers className={openSearch? styles.hide : ''}/>
         </div>

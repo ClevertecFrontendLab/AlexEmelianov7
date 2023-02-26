@@ -27,7 +27,7 @@ export const makeNavCategories = (books: IBook[], categories: IBookCategory[]) =
             ]
         }
 
-        return [...acc, {...category, count: countObj[category.name]}]
+        return [...acc, {...category, count: countObj[category.name] ? countObj[category.name] : 0}]
     }, [])
 
 }

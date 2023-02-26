@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React from 'react';
 
 import {DisplayVariant, useDisplay} from '../../context/display-context';
 import {IBook} from '../../types/books';
@@ -10,8 +10,9 @@ import styles from './book-list.module.css';
 
 interface BookListProps {
     books: IBook[] | null
+    searchWord: string
 }
-export const BookList = ({ books }: BookListProps) => {
+export const BookList = ({ books, searchWord }: BookListProps) => {
     const { display } = useDisplay();
     const displayVariant = display === DisplayVariant.tile ? styles.bookListTile : styles.bookList;
 
@@ -21,6 +22,7 @@ export const BookList = ({ books }: BookListProps) => {
                 if (display === DisplayVariant.tile) {
                     return (
                         <BookItem
+                            searchWord={searchWord}
                             book={book}
                             key={book.id}
                         />
@@ -29,6 +31,7 @@ export const BookList = ({ books }: BookListProps) => {
 
                     return (
                     <BookItemList
+                        searchWord={searchWord}
                         book={book}
                         key={book.id}
                     />

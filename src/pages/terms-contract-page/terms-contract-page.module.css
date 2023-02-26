@@ -1,7 +1,7 @@
 .termsContractPage {
   padding:62px 0;
   display:flex;
-  gap:6px;
+  gap:30px;
 }
 .pageTitle {
   font-family:'Montserrat', sans-serif;
@@ -56,6 +56,11 @@
 }
 .subSubParagraph:first-child {
   padding-top:16px;
+}
+@media (max-width:956px) {
+  .termsContractPage nav {
+    display:none;
+  }
 }
 @media (max-width:870px) {
   .termsContractPage {

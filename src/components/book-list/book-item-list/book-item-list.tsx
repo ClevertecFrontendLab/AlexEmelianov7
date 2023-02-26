@@ -6,11 +6,12 @@ import {API_URL} from '../../../books_api/books-api';
 import {getBookingMessage} from '../../../utils/get-booking-message';
 import {Button} from '../../common/button/button';
 import {Rating} from '../../common/rating/rating';
+import {Highlighter} from '../../highlighter/highlighter';
 import {BookItemProps} from '../book-item/book-item';
 
 import styles from './book-item-list.module.css';
 
-export const BookItemList: FC<BookItemProps> = ({book}) => {
+export const BookItemList: FC<BookItemProps> = ({book, searchWord}) => {
     const { category } = useParams();
 
     const navigate = useNavigate();
@@ -27,7 +28,7 @@ export const BookItemList: FC<BookItemProps> = ({book}) => {
             </div>
             <div className={styles.content}>
                 <div className={styles.contentTop}>
-                    <p className={styles.title}>{book.title}</p>
+                    <Highlighter className={styles.title} searchWord={searchWord} title={book.title}/>
                     <p className={styles.info}>
                         {book.authors && book.authors.map(author => <Fragment key={author}>{author}, </Fragment>)}
                         {book.issueYear}

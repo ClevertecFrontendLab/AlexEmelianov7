@@ -1,11 +1,18 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import {Link, useParams} from 'react-router-dom';
 
-import {useAppSelector} from '../../../hooks/use-redux';
+import {useAppDispatch, useAppSelector} from '../../../hooks/use-redux';
+import {
+    booksFetching,
+    booksFetchingSuccess, booksWithCategoriesFetching,
+    categoriesFetchingSuccess
+} from '../../../store/books/books-slice';
 
 import styles from './breadcrumbs.module.css';
 
 export const Breadcrumbs: FC = () => {
+    const dispatch = useAppDispatch();
+
     const { id, category } = useParams();
     const { book } = useAppSelector(state => state.bookDetailed);
     const { categories } = useAppSelector(state => state.books);
@@ -18,6 +25,8 @@ export const Breadcrumbs: FC = () => {
                 <div className={styles.breadcrumbs}>
                     <Link to={`/books/${categoryName ? category : 'all'}`}
                           className={styles.crumb}
+                          data-test-id='breadcrumbs-link'
+                          onClick={() => dispatch(booksWithCategoriesFetching())}
                     >
                         {categoryName ? categoryName : 'Все книги'}
                     </Link>
@@ -27,6 +36,7 @@ export const Breadcrumbs: FC = () => {
                     <Link
                         className={styles.crumb}
                         to={`/books/${category}/${id}`}
+                        data-test-id='book-name'
                     >
                         {book?.title}
                     </Link>

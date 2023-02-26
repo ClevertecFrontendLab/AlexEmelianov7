@@ -11,6 +11,7 @@ export const HeaderBurger = () => {
 
     const [open, setOpen] = useState<boolean>(false);
     const handleToggleBurgerMenu = () => setOpen(prevState => !prevState);
+    const handleCloseBurgerMenu = () => setOpen(false);
 
     const handleClickAway: MouseEventHandler = (event) => {
         if (event.target === event.currentTarget) {
@@ -50,7 +51,9 @@ export const HeaderBurger = () => {
                             showcase='burger-showcase'
                             terms='burger-terms'
                             contract='burger-contract'
-                            navBooks='burger-books'
+                            dataTestIdCategories='burger'
+                            dataTestIdCount='burger-book-count-for'
+                            onClick={handleCloseBurgerMenu}
                          />
                     </div>
                     <div className={styles.burgerMenuBottom}>

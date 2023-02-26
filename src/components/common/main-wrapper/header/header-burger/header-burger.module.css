@@ -72,6 +72,7 @@
   top:7px;
   transition:0.3s ease;
   border-radius:5px;
+  background:linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%);
 }
 .active:after {
   content:'';
@@ -83,6 +84,7 @@
   bottom:8px;
   transition:0.3s ease;
   border-radius:5px;
+  background:linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%);
 }
 .active span {
   transform:scale(0);

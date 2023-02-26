@@ -15,7 +15,8 @@ export const TermsContractPage: FC = () => {
                 showcase='navigation-showcase'
                 terms='navigation-terms'
                 contract='navigation-contract'
-                navBooks='navigation-books'
+                dataTestIdCategories='navigation'
+                dataTestIdCount='navigation-book-count-for'
             />
             <div className={styles.pageContent}>
                 {isTermsPage

@@ -3,13 +3,13 @@ import {useParams} from 'react-router-dom';
 
 import {Error} from '../../components/common/error/error';
 import {Loader} from '../../components/common/loader/loader';
+import {Breadcrumbs} from '../../components/selected-book/breadcrumbs/breadcrumbs';
 import {SelectedBook} from '../../components/selected-book/selected-book';
 import {useAppDispatch, useAppSelector} from '../../hooks/use-redux';
 import {bookDetailedFetching} from '../../store/book-detailed/book-detailed-slice';
 import {booksFetchingError} from '../../store/books/books-slice';
 
 import styles from './book-page.module.css';
-import {Breadcrumbs} from "../../components/selected-book/breadcrumbs/breadcrumbs";
 
 export const BookPage: FC = () => {
     const { id } = useParams();

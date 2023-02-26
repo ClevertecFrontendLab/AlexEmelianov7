@@ -27,6 +27,11 @@ export const booksSlice = createSlice( {
             state.error = null
             state.isLoading = true
         },
+        booksWithCategoriesFetching: state => {
+            state.books = null
+            state.error = null
+            state.isLoading = true
+        },
         booksFetchingSuccess: (state, action: PayloadAction<IBook[]>) => {
             state.isLoading = false
             state.books = action.payload
@@ -45,6 +50,7 @@ export const booksSlice = createSlice( {
 export const
     {
         booksFetching,
+        booksWithCategoriesFetching,
         booksFetchingSuccess,
         booksFetchingError,
         categoriesFetchingSuccess
