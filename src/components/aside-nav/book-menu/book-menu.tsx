@@ -9,12 +9,16 @@ import {BookGenre} from './book-genre/book-genre';
 import styles from './book-menu.module.css';
 
 interface BookMenuProps {
-    dataTestId?: string
+    onClick?: () => void
+    dataTestIdCategories?: string
+    dataTestIdCount?: string
 }
 
 export const BookMenu: FC<BookMenuProps & WithClassname> = (
     {
-        dataTestId,
+        onClick,
+        dataTestIdCategories,
+        dataTestIdCount,
         className
     }) => {
 
@@ -31,12 +35,14 @@ export const BookMenu: FC<BookMenuProps & WithClassname> = (
             {navCategories &&
                 navCategories.map(category =>
                 <BookGenre
-                    dataTestId={dataTestId}
+                    dataTestIdCategories={dataTestIdCategories}
+                    dataTestIdCount={dataTestIdCount}
                     key={category.id}
                     count={category.count}
                     id={category.id}
                     name={category.name}
                     path={category.path}
+                    onClick={onClick}
                 />
             )}
         </ul>

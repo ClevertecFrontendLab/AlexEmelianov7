@@ -7,14 +7,16 @@ import {IBook} from '../../../types/books';
 import {getBookingMessage} from '../../../utils/get-booking-message';
 import {Button} from '../../common/button/button';
 import {Rating} from '../../common/rating/rating';
+import {Highlighter} from '../../highlighter/highlighter';
 
 import styles from './book-item.module.css';
 
 export interface BookItemProps {
     book: IBook
+    searchWord: string
 }
 
-export const BookItem: FC<BookItemProps> = ({book}) => {
+export const BookItem: FC<BookItemProps> = ({book, searchWord}) => {
     const { category } = useParams();
 
     const navigate = useNavigate();
@@ -36,7 +38,7 @@ export const BookItem: FC<BookItemProps> = ({book}) => {
                     <p>ещё нет оценок</p>
                 }
             </div>
-            <p className={styles.title}>{book.title}</p>
+            <Highlighter className={styles.title} searchWord={searchWord} title={book.title}/>
             <p className={styles.info}>
                 {book.authors && book.authors.map(author => <Fragment key={author}>{author}, </Fragment>)}
                 {book.issueYear}

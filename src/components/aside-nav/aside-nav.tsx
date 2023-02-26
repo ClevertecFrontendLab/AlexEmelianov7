@@ -1,9 +1,7 @@
-import React, {FC, useMemo, useState} from 'react';
+import React, {FC, useState} from 'react';
 import {useMatch} from 'react-router-dom';
 
 import chevron from '../../assets/icons/chevron-colored.svg';
-import {useAppDispatch, useAppSelector} from '../../hooks/use-redux';
-import {makeNavCategories} from '../../utils/make-nav-categories';
 import {Routes} from '../app-router/routes';
 
 import {BookMenu} from './book-menu/book-menu';
@@ -16,15 +14,22 @@ export interface DataTestIdProps {
     showcase: string
     terms: string
     contract: string
-    navBooks: string
+    dataTestIdCategories?: string
+    dataTestIdCount?: string
 }
 
-export const AsideNav: FC<DataTestIdProps> = (
+interface AsideNavProps extends DataTestIdProps {
+    onClick?: () => void
+}
+
+export const AsideNav: FC<AsideNavProps> = (
     {
         showcase,
         terms,
         contract,
-        navBooks
+        dataTestIdCategories,
+        dataTestIdCount,
+        onClick
     }) => {
 
 
@@ -38,13 +43,6 @@ export const AsideNav: FC<DataTestIdProps> = (
     const isTermsPage = useMatch(Routes.terms);
     const isContractPage = useMatch(Routes.contract);
 
-    const { categories, books } = useAppSelector(state => state.books)
-
-    const navCategories = useMemo(
-        () => books && categories && makeNavCategories(books, categories),
-        [books, categories]
-    )
-
     return (
         <nav className={styles.menu} role='presentation'>
             <NavTab
@@ -57,7 +55,12 @@ export const AsideNav: FC<DataTestIdProps> = (
                     <img className={`${!open ? styles.chevron : ''}`} src={chevron} alt="chevron"/>
                 }
             </NavTab>
-            <BookMenu dataTestId={navBooks} className={open && isMainPage ? bookMenu.bookMenu : styles.bookMenuHide} />
+            <BookMenu
+                dataTestIdCategories={dataTestIdCategories}
+                dataTestIdCount={dataTestIdCount}
+                className={open && isMainPage ? bookMenu.bookMenu : styles.bookMenuHide}
+                onClick={onClick}
+            />
             <NavTab
                 dataTestId={terms}
                 name='Правила пользования'

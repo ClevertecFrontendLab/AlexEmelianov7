@@ -26,7 +26,7 @@ export const SelectedBook: FC<SelectedBookProps> = ({book}) => {
                 <div className={styles.topSide}>
                     <Slider images={book.images}/>
                     <div className={styles.summary}>
-                        <p className={styles.title}>{book.title}</p>
+                        <p data-test-id='book-title' className={styles.title}>{book.title}</p>
                         <p className={styles.info}>
                             {book.authors && book.authors.map(author => <Fragment key={author}>{author}, </Fragment>)}
                             {book.issueYear}
