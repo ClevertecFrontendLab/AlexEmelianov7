@@ -1,25 +1,31 @@
-import React, {FC, MouseEventHandler} from 'react';
+import React, {FC} from 'react';
 
-import {WithChildren} from '../../../types/with-children';
+import {WithClassname} from '../../../types/with-classname';
 
 import styles from './button.module.css';
-import {WithClassname} from "../../../types/with-classname";
 
 export enum ButtonVariant {
     primary = 'primary',
     secondary = 'secondary'
 }
 
+export enum ButtonType {
+    button = 'button',
+    submit = 'submit'
+}
+
 export interface ButtonProps {
     name: string
+    type?: ButtonType
     variant?: ButtonVariant
     disabled?: boolean
-    onClick?: MouseEventHandler<HTMLButtonElement>
+    onClick?: () => void
 }
 export const Button: FC<ButtonProps & WithClassname> = (
     {
         name= '',
         variant = ButtonVariant.primary,
+        type= ButtonType.button,
         onClick,
         className= '',
         disabled= false
@@ -32,7 +38,7 @@ export const Button: FC<ButtonProps & WithClassname> = (
                 ${styles.button}
                 ${variant === ButtonVariant.primary ? styles.primary : styles.secondary}
             `}
-            type='button'
+            type={type === ButtonType.button ? 'button' : 'submit'}
         >
             {name}
         </button>

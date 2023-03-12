@@ -1,15 +1,15 @@
-import React, {FC, Fragment} from 'react';
-import {useNavigate, useParams} from 'react-router-dom';
+import React, { FC, Fragment } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-import bookNoPoster from '../../../assets/img/book-no-poster.jpg';
-import {API_URL} from '../../../books_api/books-api';
-import {IBook} from '../../../types/books';
-import {getBookingMessage} from '../../../utils/get-booking-message';
-import {Button} from '../../common/button/button';
-import {Rating} from '../../common/rating/rating';
-import {Highlighter} from '../../highlighter/highlighter';
+import bookNoPoster from "../../../assets/img/book-no-poster.jpg";
+import { API_URL } from "../../../books_api/books-api";
+import { IBook } from "../../../types/books";
+import { getBookingMessage } from "../../../utils/get-booking-message";
+import { Button, ButtonType } from "../../common/button/button";
+import { Rating } from "../../common/rating/rating";
+import { Highlighter } from "../../highlighter/highlighter";
 
-import styles from './book-item.module.css';
+import styles from "./book-item.module.css";
 
 export interface BookItemProps {
     book: IBook
@@ -46,6 +46,7 @@ export const BookItem: FC<BookItemProps> = ({book, searchWord}) => {
             <Button
                 className={styles.button}
                 name={getBookingMessage(book.booking)}
+                type={ButtonType.button}
                 disabled={!!book.booking}
             />
         </div>

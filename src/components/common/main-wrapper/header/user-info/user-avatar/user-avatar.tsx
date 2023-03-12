@@ -3,8 +3,8 @@ import React, {FC} from 'react';
 import styles from './user-avatar.module.css';
 
 interface UserAvatarProps {
-    userName: string
     avatarUrl: string
+    userName?: string
 }
 export const UserAvatar: FC<UserAvatarProps> = ({userName= '', avatarUrl= ''}) => (
         <div className={styles.userAvatar}>

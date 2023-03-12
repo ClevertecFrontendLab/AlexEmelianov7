@@ -1,21 +1,22 @@
 import React, {FC} from 'react';
 import {Navigate, Route, Routes} from 'react-router-dom';
 
+import { useAppSelector } from '../../hooks/use-redux';
+
 import {PRIVATE_ROUTES, PUBLIC_ROUTES} from './routes';
 
 export const AppRouter: FC = () => {
-
-    const isAuth = true
+    const { user } = useAppSelector(state => state.auth);
 
     return (
         <Routes>
-            {isAuth
+            {user
                 ?
                 PRIVATE_ROUTES.map(({ path, Element}) => <Route key={path} path={path} element={<Element />} />)
                 :
                 PUBLIC_ROUTES.map(({ path, Element}) => <Route key={path} path={path} element={<Element />} />)
             }
-            <Route path="*" element={<Navigate to={isAuth ? '/books/all' : '/books/all'} replace={true} />} />
+            <Route path="*" element={<Navigate to={user ? '/books/all' : '/auth'} replace={true}/>} />
         </Routes>
     );
 };

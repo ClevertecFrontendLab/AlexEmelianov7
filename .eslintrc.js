@@ -31,6 +31,7 @@ module.exports = {
                 props: false,
             },
         ],
+        complexity: ['warn', 38],
     },
     ignorePatterns: ['coverage', 'cypress.config.ts'],
 };

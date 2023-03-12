@@ -1,0 +1,39 @@
+.authWrapper {
+  position:absolute;
+  top:50%;
+  left:50%;
+  z-index:11;
+  transform:translate(-50%, -50%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  min-height:100vh;
+  background:linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%);
+  padding:16px;
+}
+.title {
+  position:absolute;
+  top:3%;
+  left:50%;
+  transform:translateX(-50%);
+  font-family:'Montserrat', sans-serif;
+  font-weight:700;
+  font-size:32px;
+  line-height:40px;
+  color:#ffffff;
+}
+.modalWrapper {
+  position:relative;
+  width:528px;
+  padding:48px 56px;
+  border-radius:16px;
+  background-color:#FFFFFF;;
+}
+@media (max-width:528px) {
+  .modalWrapper {
+    padding:24px 16px;
+    width:100%;
+  }
+}

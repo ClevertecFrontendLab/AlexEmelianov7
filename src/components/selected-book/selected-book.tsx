@@ -1,17 +1,17 @@
-import React, {FC, Fragment, useState} from 'react';
+import React, { FC, Fragment, useState } from "react";
 
-import chevron from '../../assets/icons/chevron.svg';
-import {IBookDetailed} from '../../types/books';
-import {getBookingMessage} from '../../utils/get-booking-message';
-import {Button} from '../common/button/button';
-import {Rating} from '../common/rating/rating';
+import chevron from "../../assets/icons/chevron.svg";
+import { IBookDetailed } from "../../types/books";
+import { getBookingMessage } from "../../utils/get-booking-message";
+import { Button, ButtonType } from "../common/button/button";
+import { Rating } from "../common/rating/rating";
 
-import {DetailedInfo} from './detailed-info/detailed-info';
-import {RateBookButton} from './rate-book-button/rate-book-button';
-import {Reviews} from './reviews/reviews';
-import {Slider} from './slider/slider';
+import { DetailedInfo } from "./detailed-info/detailed-info";
+import { RateBookButton } from "./rate-book-button/rate-book-button";
+import { Reviews } from "./reviews/reviews";
+import { Slider } from "./slider/slider";
 
-import styles from './selected-book.module.css';
+import styles from "./selected-book.module.css";
 
 interface SelectedBookProps {
     book: IBookDetailed
@@ -34,6 +34,7 @@ export const SelectedBook: FC<SelectedBookProps> = ({book}) => {
                         <Button
                             className={styles.selectedBookBtn}
                             name={getBookingMessage(book.booking)}
+                            type={ButtonType.button}
                             disabled={!!book.booking}
                         />
                     </div>
