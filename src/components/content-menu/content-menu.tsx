@@ -1,4 +1,4 @@
-import React, {ChangeEvent, ChangeEventHandler, FC, useState} from 'react';
+import React, {FC, useState} from 'react';
 
 import {useScreenWidth} from '../../context/screen-width-context';
 

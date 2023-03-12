@@ -119,7 +119,7 @@ export const RecoveryPage = () => {
             {isForgotPassSuccess && !code && (
                 <ModalWrapper dataTestId='status-block'>
                     <h1 className={`${styles.title} ${styles.centered}`}>Письмо выслано</h1>
-                    <p className={`${styles.description} ${styles.centeredDesrc}`}>
+                    <p className={styles.centeredDescr}>
                         Перейдите в вашу почту, чтобы воспользоваться подсказками по восстановлению пароля
                     </p>
                 </ModalWrapper>
@@ -165,7 +165,7 @@ export const RecoveryPage = () => {
             {isResetPassSuccess && code && (
                 <ModalWrapper dataTestId='status-block'>
                     <h1 className={`${styles.title} ${styles.centered}`}>Новые данные сохранены</h1>
-                    <p className={`${styles.description} ${styles.centered}`}>
+                    <p className={styles.centeredDescr}>
                         Зайдите в личный кабинет, используя свои логин и новый пароль
                     </p>
                     <Button
@@ -179,7 +179,7 @@ export const RecoveryPage = () => {
             {error && code && (
                 <ModalWrapper dataTestId='status-block'>
                     <h1 className={`${styles.title} ${styles.centered}`}>Данные не сохранились</h1>
-                    <p className={`${styles.description} ${styles.centered}`}>{error}</p>
+                    <p className={styles.centeredDescr}>{error}</p>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <Button
                             className={styles.button}

@@ -1,9 +1,9 @@
 import React, {FC} from 'react';
 
 import {DisplayVariant, useDisplay} from '../../../context/display-context';
+import {WithClassname} from '../../../types/with-classname';
 
 import styles from './display-buttons.module.css';
-import {WithClassname} from "../../../types/with-classname";
 
 export const DisplaySwitchers: FC<WithClassname> = ({className = ''}) => {
 

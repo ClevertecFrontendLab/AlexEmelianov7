@@ -13,7 +13,7 @@ export const ModalWrapper: FC<ModalWrapperProps & WithChildren> = (
         dataTestId,
         children
     }) => (
-        <div className={styles.authWrapper}>
+        <div className={styles.authWrapper} data-test-id='auth'>
             <h1 className={styles.title}>Cleverland</h1>
             <div
                 className={styles.modalWrapper}
