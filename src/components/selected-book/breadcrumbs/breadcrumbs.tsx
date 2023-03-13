@@ -1,11 +1,9 @@
-import React, {FC, useEffect} from 'react';
+import React, {FC} from 'react';
 import {Link, useParams} from 'react-router-dom';
 
 import {useAppDispatch, useAppSelector} from '../../../hooks/use-redux';
 import {
-    booksFetching,
-    booksFetchingSuccess, booksWithCategoriesFetching,
-    categoriesFetchingSuccess
+    booksWithCategoriesFetching
 } from '../../../store/books/books-slice';
 
 import styles from './breadcrumbs.module.css';

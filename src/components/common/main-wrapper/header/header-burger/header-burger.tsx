@@ -1,12 +1,16 @@
 import React, {MouseEventHandler, useEffect, useState} from 'react';
 
 import {useScreenWidth} from '../../../../../context/screen-width-context';
+import { useAppDispatch } from '../../../../../hooks/use-redux';
+import { logout } from '../../../../../store/auth/auth-slice';
 import {AsideNav} from '../../../../aside-nav/aside-nav';
 import {NavTab} from '../../../../aside-nav/nav-tab/nav-tab';
 
 import styles from './header-burger.module.css';
 
 export const HeaderBurger = () => {
+    const dispatch = useAppDispatch();
+
     const { screenWidth } = useScreenWidth();
 
     const [open, setOpen] = useState<boolean>(false);
@@ -17,6 +21,13 @@ export const HeaderBurger = () => {
         if (event.target === event.currentTarget) {
             handleToggleBurgerMenu();
         }
+    }
+
+    const handleLogout = () => {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('user');
+        dispatch(logout());
+        handleCloseBurgerMenu();
     }
 
     useEffect(() => {
@@ -63,6 +74,8 @@ export const HeaderBurger = () => {
                                 path="/"
                             />
                             <NavTab
+                                dataTestId='exit-button'
+                                onClick={handleLogout}
                                 name='Выход'
                                 path="/"
                             />

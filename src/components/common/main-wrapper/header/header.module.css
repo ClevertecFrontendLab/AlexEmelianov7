@@ -1,14 +1,18 @@
-.wrapper{
+.wrapper {
   max-width:1140px;
   margin:0 auto;
   padding:0 15px;
   width:100%;
-}
-.header {
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin:32px 0 0 0;
+  position:relative;
+}
+.header {
+  padding:32px 0 22px;
+}
+.bordered {
+  box-shadow:4px 4px 4px rgba(54, 54, 54, 0.05), -4px 4px 4px rgba(54, 54, 54, 0.05);
 }
 .content {
   display:flex;
@@ -26,6 +30,16 @@
   line-height:40px;
   letter-spacing:0.1px;
   color:#363636;
+}
+.overlay {
+  height:100vh;
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  overflow-y:auto;
+  z-index:10;
 }
 @media (max-width:956px) {
   .logo {
@@ -49,7 +63,7 @@
 }
 @media (max-width:400px) {
   .header {
-    margin:24px 0 0 0;
+    padding:24px 0 0 0;
   }
   .title {
     font-size:18px;

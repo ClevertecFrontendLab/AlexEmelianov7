@@ -1,8 +1,9 @@
 import React, {FC, MouseEventHandler} from 'react';
 import {Link, PathMatch} from 'react-router-dom';
 
+import {WithChildren} from '../../../types/with-children';
+
 import styles from './nav-tab.module.css';
-import {WithChildren} from "../../../types/with-children";
 
 interface NavTabProps {
     name: string
